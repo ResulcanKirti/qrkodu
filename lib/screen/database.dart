@@ -16,8 +16,9 @@ class SavedQRCodesPage extends StatelessWidget {
     box.toMap().forEach((key, value) {
       String devEUI = key.substring(8, 24);
       String appSKey = key.substring(34, 66);
-      String nwSKey = key.substring(75, 104);
-      String locationData = value.substring(0, 23);
+      String nwSKey = key.substring(75, 107);
+      String locationData = value.substring(0, 11);
+      String locationDatalong = value.substring(12, 23);
       String timestamp = value.substring(33, 49);
 
       Map<String, dynamic> qrData = {
@@ -25,7 +26,8 @@ class SavedQRCodesPage extends StatelessWidget {
         'devEUI': devEUI,
         'appSKey': appSKey,
         'nwSKey': nwSKey,
-        'location': locationData,
+        'latitude': locationData,
+        'longitude': locationDatalong,
         'time': timestamp,
       };
 
