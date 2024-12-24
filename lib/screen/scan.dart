@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:barcode_scan2/barcode_scan2.dart';
 import 'package:hive/hive.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:qrkodu/database.dart';
+import 'package:qrkodu/screen/database.dart';
 
 class QRCodeScannerPage extends StatefulWidget {
   const QRCodeScannerPage({super.key});
@@ -68,6 +68,7 @@ class _QRCodeScannerPageState extends State<QRCodeScannerPage> {
       }
 
       Position position = await Geolocator.getCurrentPosition(
+          // ignore: deprecated_member_use
           desiredAccuracy: LocationAccuracy.high);
       String locationData = " ${position.latitude}, ${position.longitude} ";
       DateTime now = DateTime.now();
@@ -99,6 +100,29 @@ class _QRCodeScannerPageState extends State<QRCodeScannerPage> {
 
   @override
   Widget build(BuildContext context) {
+    IconData getIconBasedOnResult() {
+      switch (scanResult) {
+        case "Henüz bir QR kod taranmadı":
+          return Icons.qr_code_2;
+        case "Herhangi bir içerik bulunamadı!":
+          return Icons.close;
+        case "Bir hata oluştu:":
+          return Icons.close;
+        case "Konum izni verilmedi! Lütfen ayarlardan izni verin.":
+          return Icons.warning;
+        case "Konum servisleri kapalı! Lütfen açın.":
+          return Icons.warning;
+        case "Bu QR kod zaten kaydedilmiş!":
+          return Icons.close;
+        case "Konum alınırken bir hata oluştu:":
+          return Icons.error;
+        case "QR kod ve konum kaydedildi!":
+          return Icons.check_circle_outline;
+        default:
+          return Icons.help_outline;
+      }
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -150,9 +174,9 @@ class _QRCodeScannerPageState extends State<QRCodeScannerPage> {
                   : Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Icon(
-                          Icons.check_circle_outline,
-                          color: Color(0xFF28a745),
+                        Icon(
+                          getIconBasedOnResult(),
+                          color: Color(0xFF004c97),
                           size: 60,
                         ),
                         const SizedBox(height: 20),
