@@ -29,7 +29,13 @@ class _QRCodeScannerPageState extends State<QRCodeScannerPage> {
       String qrData = result.rawContent;
 
       if (qrData.isNotEmpty) {
-        await _getLocationAndSave(qrData);
+        if (qrData.startsWith("DevEUI")) {
+          await _getLocationAndSave(qrData);
+        } else {
+          setState(() {
+            scanResult = "Uygun QR kod taratılmadı!";
+          });
+        }
       } else {
         setState(() {
           scanResult = "Herhangi bir içerik bulunamadı!";
@@ -176,7 +182,7 @@ class _QRCodeScannerPageState extends State<QRCodeScannerPage> {
                       children: [
                         Icon(
                           getIconBasedOnResult(),
-                          color: Color(0xFF004c97),
+                          color: const Color(0xFF004c97),
                           size: 60,
                         ),
                         const SizedBox(height: 20),

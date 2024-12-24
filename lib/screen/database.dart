@@ -36,7 +36,8 @@ class SavedQRCodesPage extends StatelessWidget {
     });
     String jsonString = const JsonEncoder.withIndent('  ').convert(qrList);
     PermissionStatus permission = await Permission.storage.request();
-    if (permission.isGranted) {
+    if (permission.isGranted ||
+        await Permission.manageExternalStorage.request().isGranted) {
       final directory = await getExternalStorageDirectory();
       if (directory != null) {
         final downloadsDirectory = Directory('${directory.path}/Download');

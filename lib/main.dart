@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF004c97)),
         useMaterial3: true,
       ),
-      home: QRCodeScannerPage(),
+      home: const QRCodeScannerPage(),
     );
   }
 }
