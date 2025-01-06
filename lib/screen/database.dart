@@ -19,7 +19,7 @@ class SavedQRCodesPage extends StatelessWidget {
       String nwSKey = key.substring(75, 107);
       String locationData = value.substring(0, 11);
       String locationDatalong = value.substring(12, 23);
-      String timestamp = value.substring(33, 49);
+      String timestamp = value.substring(32, 49);
 
       Map<String, dynamic> qrData = {
         'UKB Device': counter,
