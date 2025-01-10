@@ -88,6 +88,7 @@ class SavedQRCodesPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        iconTheme: const IconThemeData(color: Colors.white),
         title: const Text(
           'Kayıtlı QR Kodlar',
           style: TextStyle(
