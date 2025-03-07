@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qrkodu/screen/scan.dart';
+import 'package:qrkodu/screen/dashboard.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF004c97)),
         useMaterial3: true,
       ),
-      home: const QRCodeScannerPage(),
+      home: const HomePage(),
     );
   }
 }
